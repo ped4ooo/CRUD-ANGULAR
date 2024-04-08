@@ -1,0 +1,109 @@
+<div class="container">
+  <h1 class="title">Cadastro de Pessoas</h1>
+
+  <form [formGroup]="formPessoa">
+    <div class="form">
+      <mat-form-field class="w-33">
+        <mat-label>Nome</mat-label>
+        <input formControlName="nome" matInput />
+      </mat-form-field>
+
+      <mat-form-field class="w-33">
+        <input placeholder="Data de Nascimento" formControlName="dataNascimento" matInput
+          [matDatepicker]="dataNascimento" />
+        <mat-datepicker-toggle [for]="dataNascimento" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #dataNascimento></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="w-33">
+        <mat-select placeholder="Cliente/Fornecedor" formControlName="identificacao" matInput>
+          <mat-option value="CLIENTE">Cliente</mat-option>
+          <mat-option value="FORNECEDOR">Fornecedor</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form">
+      <mat-form-field class="w-33">
+        <mat-label>CPF/CNPJ</mat-label>
+        <input matInput formControlName="identificador" />
+      </mat-form-field>
+      
+      <mat-form-field class="w-33">
+        <mat-label>RG/IE</mat-label>
+        <input matInput formControlName="documento" />
+      </mat-form-field>
+
+      <mat-form-field class="w-33">
+        <mat-label>Cor Favorita</mat-label>
+        <input matInput formControlName="corFavorita" />
+      </mat-form-field>
+    </div>
+
+    <div class="button-incluir">
+      <button mat-raised-button color="primary" [disabled]="pessoaAtual != null" (click)="onIncluirPessoas()">Incluir</button>
+    </div>
+  </form>
+
+  <table #table mat-table [dataSource]="pessoas" class="mat-elevation-z8" *ngIf="pessoas.length > 0">
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Código </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="corFavorita">
+      <th mat-header-cell *matHeaderCellDef> Cor Favorita </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.corFavorita}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="identificacao">
+      <th mat-header-cell *matHeaderCellDef> Cliente/Fornecedor </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.identificacao}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="documento">
+      <th mat-header-cell *matHeaderCellDef> RG/IE </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.documento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="identificador">
+      <th mat-header-cell *matHeaderCellDef> CPF/CNPJ </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.identificador}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataNascimento">
+      <th mat-header-cell *matHeaderCellDef> Data de Nascimento </th>
+      <td mat-cell *matCellDef="let pessoa"> {{pessoa?.dataNascimento | date:'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let pessoa"> 
+        <button mat-raised-button color="accent" (click)="onEditarPessoas(pessoa)">Editar</button> 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="atualizar">
+      <th mat-header-cell *matHeaderCellDef> Atualizar </th>
+      <td mat-cell *matCellDef="let pessoa"> 
+        <button mat-raised-button color="primary" (click)="onAtualizarPessoas()">Atualizar</button> 
+      </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="excluir">
+      <th mat-header-cell *matHeaderCellDef> Excluir </th>
+      <td mat-cell *matCellDef="let pessoa"> 
+        <button mat-raised-button color="warn" (click)="onExcluirPessoa(pessoa)">Excluir</button> 
+      </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="['codigo', 'nome', 'dataNascimento', 'identificacao', 'identificador', 'documento', 'corFavorita']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['codigo', 'nome', 'dataNascimento', 'identificacao', 'identificador', 'documento', 'corFavorita', 'editar', 'atualizar', 'excluir']"></tr>
+  </table>
+</div>

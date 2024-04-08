@@ -1,0 +1,30 @@
+.container {
+  padding: 16px;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.button-incluir {
+  display: flex;
+  justify-content: right;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
