@@ -25,7 +25,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O CRUD - Angular (realizado para estudo) é um cadastro de pessoas, desenvolvido para usar como formulário de sistemas.
+O CRUD - Angular (realizado para estudo), é um cadastro de pessoas desenvolvido para ser usado como formulário em sistemas.
 
 
 ## :memo: Licença
